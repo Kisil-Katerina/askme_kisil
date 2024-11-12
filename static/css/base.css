@@ -1,0 +1,76 @@
+.input {
+    width: 400px;
+    background-color: #D7E6C7; 
+}
+
+a{
+    color: #3e3f03;   
+    font-size: larger;
+}
+
+form{
+    font-size: large;
+}
+body {
+    background-color: #96B690;
+}
+
+.navbar {
+    background-color: #B6D0B4; 
+}
+
+.answer {
+    background-color: #B6D0B4; 
+}
+
+.question {
+    background-color: #71a16f; 
+}
+
+
+.form-control{
+    background-color: #D7E6C7; 
+    width: 500px;
+}
+
+.url{
+    background-color: #D7E6C7; 
+    width: 200px;
+}
+
+.card-link {
+    color: #3e3f03; 
+}
+
+.badge {
+    font-size: large; 
+}
+
+.list-group-item {
+    background-color: #739E6B; 
+}
+
+.list-group-item a {
+    color: #1a290c; 
+    font-size: large;
+}
+
+.pagination .page-link {
+    background-color: #B6D0B4; 
+    color: #1a290c;
+    font-size: large;
+}
+
+html, 
+body { 
+    height: 100%; 
+}
+
+body { 
+    display: flex; 
+    flex-direction: column; 
+}
+
+main { 
+    flex: 1; 
+}

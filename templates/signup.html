@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>книжный клуб</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/base.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+            <div class="d-flex w-100 justify-content-between align-items-center">
+                <a class="navbar-brand ms-3" href="#"> &#128366; книжный клуб</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <form class="d-flex col-md-6" role="search">
+                    <input class="form-control me-2 input" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">ask!</button>
+                </form>
+
+                <div class="d-flex gap-1" id="user_inf">
+                    <a class="ms-2 me-2" href="#">log in</a>
+                    <a class="ms-2 me-2"href="#">register</a>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-3">
+        <div class="d-flex gap-3 align-items-center">
+            <h1>Log in</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-9 ">
+                <form class="w-100" id="questionForm">
+
+                    <div class="form-group row  mt-5">
+                        <label for="log" class="col-sm-2 col-form-label">Login</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="title" maxlength="10" placeholder="Введите логин" required>
+                            <div class="invalid-feedback">Пожалуйста, введите логин!</div>
+                        </div>
+                    </div>
+                
+                    <div class="form-group row  mt-3">
+                        <label for="password" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="password" maxlength="10"  placeholder="Введите пароль" >
+                            <div class="invalid-feedback">Пожалуйста, введите пароль!</div>
+                        </div>
+                    </div>
+
+                    <div  class="form-group" >
+                        <button class="btn btn-success col-sm-2  mt-5" type="submit">Log in!</button>
+                        <div>
+                            <a class="col-sm-2" href="#">create new account</a>
+                        </div>
+                   </div>
+                   
+                </form>                
+            
+                <div id="errorMessages" class="mt-3 text-danger"></div>
+            </div>
+            <div class="col">
+                <section class="mb-3">
+                    <h2>Popular Tags</h2>
+                    <div>
+                        <a href="#" class="badge text-bg-success mt-2">аааааа</a>
+                        <a href="#" class="badge text-bg-success mt-2">ббббббб</a>
+                        <a href="#" class="badge text-bg-success mt-2">вввввв</a>
+                        <a href="#" class="badge text-bg-success mt-2">ггггг</a>
+                        <a href="#" class="badge text-bg-success mt-2">ддддд</a>
+                        <a href="#" class="badge text-bg-success mt-2">ееееееее</a>
+                        <a href="#" class="badge text-bg-success mt-2">жжжжжжж</a>
+                        <a href="#" class="badge text-bg-success mt-2">ззззззз</a>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Best Members</h2>
+                    <div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="#">Member</a></li>
+                            <li class="list-group-item"><a href="#">Member</a></li>
+                            <li class="list-group-item"><a href="#">Member</a></li>
+                            <li class="list-group-item"><a href="#">Member</a></li>
+                            <li class="list-group-item"><a href="#">Member</a></li>
+                        </ul>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+    <footer class="bg-dark text-white text-center py-1">
+        <p>тут могла бы быть ваша реклама</p>
+    </footer>
+
+    <script src="../static/js/bootstrap.min.js">
+    </script>
+</body>
+
+</html>
