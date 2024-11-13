@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{%block navigation%}
+    <img src="asda.jpg" alt="Avatar" class="img-thumbnail">
+    <div>
+        <div class="ms-2 me-2">
+            Ф. М. Достоевский
+        </div>
+        <a class="ms-2 me-2" href="{% url 'signup' %}">settings</a>
+        <a class="ms-2 me-2" href="{% url 'login' %}">log out</a>
+    </div>
+{%endblock%}
+
+{%block initial%}
+    <h1>Hot Questions</h1>
+    <a href="{% url 'index' %}">New Questions</a>
+{%endblock%}
+
+{%block content%}
+    <div class="d-flex flex-column gap-3">
+    {% for question in questions %}
+        <div class="card question w-100 " style="width: 18rem;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="border mb-2">
+                            <img src="../static/img/jpg.jpg" alt="Avatar" class="img-fluid" style="width: 100%; height: auto;">
+                        </div>
+                        <input class="form-control" type="number" value="5" placeholder="Default input"
+                                aria-label="default input example">
+                        </div>
+                        <div class="col-9">
+                            <a href="{% url 'question' question.id %}" class="card-title">{{ question.title }}</a>
+                            <p class="card-text">{{ question.text }}</p>
+
+                        <div class="d-flex gap-5">
+                            <a href="#" class="card-link">Answer (3)</a>
+                            <div>
+                                Tags:
+                                {% for tag in tags %}
+                                <a  href="{% url 'tag' tag.id %}" class="ms-2">{{ tag.text }}</a>
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% include 'pagination.html'%}
+    
+    </div>
+
+{%endblock%}

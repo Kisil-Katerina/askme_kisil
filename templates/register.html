@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{%block navigation%}
+    <div>
+        <a class="ms-2 me-2" href="{% url 'login' %}">log in</a>
+    </div>
+{%endblock%}
+
+{%block initial%}
+    <h1>Registration</h1>
+    <a href="{% url 'index' %}">New Questions</a>
+{%endblock%}
+
+{%block content%}
+  <form class="w-100" id="questionForm">
+
+    <div class="form-group row  mt-5">
+        <label for="log" class="col-sm-2 col-form-label">Login</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control input-val" id="title" maxlength="10" placeholder="Введите логин" required>
+            <div class="invalid-feedback">Пожалуйста, введите логин!</div>
+        </div>
+    </div>
+
+    <div class="form-group row  mt-3">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control input-val" id="tags" maxlength="50" placeholder="Введите почту">
+            <div class="invalid-feedback">Пожалуйста, введите email!</div>
+        </div>
+    </div>
+
+    <div class="form-group row  mt-3">
+        <label for="nick" class="col-sm-2 col-form-label">NickName</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control input-val" id="title" maxlength="10" placeholder="Введите имя" required>
+            <div class="invalid-feedback">Пожалуйста, введите NickName!</div>
+        </div>
+    </div>
+
+    <div class="form-group row  mt-3">
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control input-val" id="password" maxlength="10"  placeholder="Введите пароль" >
+            <div class="invalid-feedback">Пожалуйста, введите пароль!</div>
+        </div>
+    </div>
+
+    <div class="form-group row  mt-3">
+        <label for="password" class="col-sm-2 col-form-label">Repeat password</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control input-val" id="password" maxlength="10"  placeholder="Введите пароль еще раз" >
+            <div class="invalid-feedback">Пожалуйста, подтвердите пароль!</div>
+        </div>
+    </div>
+
+    <div class="form-group row mt-3">
+        <label for="avatar" class="col-sm-2 col-form-label">Upload avatar</label>
+        <div class="col-sm-10">
+            <input class="url" type="url" id="link" name="link" placeholder="Введите ссылку..." > 
+            <button class="btn btn-success ms-3" type="submit">Choose</button>
+        </div>
+        
+    </div>
+
+    <button class="btn btn-success col-sm-2  mt-5" type="submit">Register!</button>
+  </form>                
+
+  <div id="errorMessages" class="mt-3 text-danger"></div>
+{%endblock%}
