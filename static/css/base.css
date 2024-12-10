@@ -1,0 +1,127 @@
+.input {
+    background-color: #D7E6C7; 
+    }
+
+a{
+    color: #3e3f03;   
+    font-size: larger;
+}
+
+form{
+    font-size: large;
+  }
+body {
+    background-color: #96B690;
+}
+
+.navbar {
+    background-color: #B6D0B4; 
+}
+
+.answer {
+    background-color: #B6D0B4; 
+}
+
+.question {
+    background-color: #71a16f; 
+}
+
+.form-control{
+    background-color: #D7E6C7; 
+} 
+
+.input-val{
+    background-color: #D7E6C7; 
+    width: 500px;
+}
+.input-file-val{
+    background-color: #D7E6C7; 
+    width:250px;
+    white-space: nowrap; /* Не переносить текст */
+    overflow: hidden; /* Скрыть переполнение */
+    text-overflow: ellipsis; /* Добавить многоточие, если текст длиннее */
+    display: inline-block; /* Позволяет задавать ширину */
+    min-width: 150px; /* Минимальная ширина поля */
+}
+
+.file-input{
+    background-color: #D7E6C7; 
+    display: none;
+}
+
+.url{
+    background-color: #D7E6C7; 
+    width: 200px;
+}
+
+
+.card-link {
+    color: #3e3f03; 
+}
+
+
+.list-group-item {
+    background-color: #739E6B; 
+}
+
+.list-group-item a {
+    color: #1a290c; 
+    font-size: large;
+}
+
+.pagination .page-link {
+    background-color: #B6D0B4; 
+    color: #1a290c;
+    font-size: large;
+}
+
+html, 
+body { 
+    display: flex; 
+    flex-direction: column; 
+    text-align: justify;
+    line-height: 1.6;  /* улучшает читаемость текста */
+    font-size: 14px;
+    height: 100%;
+    
+}
+
+main { 
+    flex: 1; 
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-body {
+    flex-grow: 1;
+}
+
+.card-footer {
+    margin-top: auto; }
+
+.smal_header{
+    font-size: 120%;
+}
+
+section .tags-container {
+    display: flex; /* используем Flexbox */
+    flex-wrap: wrap; /* разрешаем перенос элементов на новую строку */
+    gap: 0.5rem; /* отступы между тегами */
+}
+
+.badge {
+    flex: 1 0 45%; /* каждый тег занимает 45% ширины контейнера (два тега на строку) */
+    font-size: 1.2rem; /* увеличиваем размер шрифта */
+    padding: 0.5rem 1rem; /* отступы внутри тегов */
+    text-decoration: none; /* убираем подчеркивание ссылок */
+    border-radius: 1rem; /* округлые углы */
+    white-space: nowrap; /* запрещаем перенос строк внутри тегов */
+}
+/* чтобы теги не растягивались по ширине */
+section .tags-container .badge {
+    max-width: auto; /* ограничиваем максимальную ширину тегов */
+}

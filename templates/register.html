@@ -56,9 +56,12 @@
 
     <div class="form-group row mt-3">
         <label for="avatar" class="col-sm-2 col-form-label">Upload avatar</label>
-        <div class="col-sm-10">
-            <input class="url" type="url" id="link" name="link" placeholder="Введите ссылку..." > 
-            <button class="btn btn-success ms-3" type="submit">Choose</button>
+        <div class="col-sm-10 d-flex">
+            <input id="fileInput" class="file-input" type="file">
+            <span class="form-control input-file-val" id="fileLabel">Выберите файл</span>
+            <button class="btn btn-success choose-button ms-3" onclick="document.getElementById('fileInput').click()">
+                Choose
+            </button>
         </div>
         
     </div>
@@ -67,4 +70,18 @@
   </form>                
 
   <div id="errorMessages" class="mt-3 text-danger"></div>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const fileLabel = document.getElementById('fileLabel');
+
+    fileInput.addEventListener('change', function() {
+        if (fileInput.files.length > 0) {
+            fileLabel.textContent = fileInput.files[0].name; // Отображаем имя файла
+        } else {
+            fileLabel.textContent = 'Choose file'; // Сбрасываем текст, если файл не выбран
+        }
+    });
+</script>
+
 {%endblock%}

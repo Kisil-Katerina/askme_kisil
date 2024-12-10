@@ -23,7 +23,7 @@
                 </button>
 
                 <form class="d-flex col-md-6" role="search">
-                    <input class="form-control me-2 input" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-5 input" type="search" placeholder="Search" aria-label="Search">
                     <a class="btn btn-outline-success" href="{% url 'ask' %}">
                         ask!
                     </a>
@@ -46,29 +46,30 @@
         </div>
 
         <div class="row">
-            <div class="col-9">
+            <div class="col-8">
                 {% block content %}
                 {% endblock%}
             </div>
-            <div class="col">
+            <div class="col ms-5">
                 <section class="mb-3">
                     <h2>Popular Tags</h2>
-                    <div>
+                    <div class="tags-container">
                         {% for tag in tags %}
-                        <a  href="{% url 'tag' tag.id %}" class="badge text-bg-success mt-2">{{ tag.text }}</a>
-                        {%endfor%}
+                            <a href="{% url 'tag' tag.id %}" class="badge text-bg-success mt-2">{{ tag.name }}</a>
+                        {% endfor %}
                     </div>
                 </section>
 
-                <section>
+                <section class="mt-5"> 
                     <h2>Best Members</h2>
                     <div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="#">Member</a></li>
-                            <li class="list-group-item"><a href="#">Member</a></li>
-                            <li class="list-group-item"><a href="#">Member</a></li>
-                            <li class="list-group-item"><a href="#">Member</a></li>
-                            <li class="list-group-item"><a href="#">Member</a></li>
+                            {% for member in best_members %}
+                                <li class="list-group-item">
+                                    <span class="smal_header"> {{ member.user.username }} </span>
+                                    <span class="ms-4"> rating: {{ member.rating }} </span>
+                                </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </section>
