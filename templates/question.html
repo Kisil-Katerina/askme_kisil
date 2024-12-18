@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{%block initial%}
+    <a href="{% url 'index' %}" class="mb-3 me-4">Новые вопросы</a>
+    <a href="{% url 'hot' %}" class="mb-3">Интересные вопросы</a>
+{%endblock%}
+
+{%block content%}
+{% csrf_token %}
+    <div class="d-flex flex-column gap-3">
+        <div class="card question w-100" style="width: 18rem; display: flex; flex-direction: column; height: 100%;">
+            <div class="card-body d-flex flex-column" style="flex-grow: 1;">
+                <div class="row">
+                    <div class="col-12 ">
+                        <a href="{% url 'question' question.id %}" class="card-title">{{ question.title }}</a>
+                        <p class="card-text">{{ question.content }}</p>
+        
+                        <div class="d-flex gap-5">
+                            <em> Ответы <br> ( {{ question.answer_count }} )</em>
+                            <div>
+                                Тэги:
+                                {% for tag in question.tags.all %}
+                                    <a href="{% url 'tag' tag.id %}" class="ms-2">{{ tag.name }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted mt-auto d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-sm like-button" data-question-id="{{ question.id }}">
+                        <i class="bi bi-heart"></i>
+                      </button>
+                    <span class="ms-1 like-count">{{ question.rating }}</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span>автор: {{ question.author.username }}</span> 
+                    <span class="ms-3">создан: {{ question.created_at }}</span> 
+                </div>
+            </div>
+        </div>
+
+        {% for answer in answers %}
+        <div class="card answer w-100" style="width: 18rem; display: flex; flex-direction: column; height: 100%;">
+            <div class="card-body d-flex flex-column" style="flex-grow: 1;">
+                <div class="row">
+                    <div class="col-12 ">
+                        <p class="card-text">{{ answer.content }}</p>
+
+                        {% comment %} <div class="form-check">
+                            <input class="form-check-input correct-answer-checkbox" type="checkbox" 
+                               value="{{ answer.id }}" id="answer-checkbox-{{ answer.id }}" name="is_correct" 
+                               {% if answer.is_correct %} checked {% endif %}
+                               data-question-id="{{ answer.question.id }}" data-answer-id="{{ answer.id }}">
+                            <label class="form-check-label" for="answer-checkbox-{{ answer.id }}">
+                                Correct!
+                            </label>
+                        </div> {% endcomment %}
+ 
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted mt-auto d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-sm answer-like-button" data-answer-id="{{ answer.id }}">
+                        <i class="bi bi-heart"></i>
+                      </button>
+                    <span class="ms-1 answer-like-count">{{ answer.rating }}</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span>автор: {{ answer.author.username }}</span> 
+                    <span class="ms-3">создан: {{answer.created_at }}</span> 
+                </div>
+            </div>
+        </div>
+        
+        {% endfor %}
+
+        {% include 'pagination.html'%}
+        
+    </div>
+    
+    {% if user.is_authenticated %}
+    <form class="w-100" id="answerForm" method="post">
+
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="textarea mt-3">
+            {{ form.content }}
+            {% for error in form.content.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+
+        <button class="btn btn-success col-sm-2  mt-3 mb-3" type="submit">Answer!</button>
+    </form>
+
+    {% endif%}
+    <script>
+        document.getElementById('answerForm').addEventListener('submit', function(event) {
+        setTimeout(function() {
+            document.getElementById('answerForm').reset(); // очистка всей формы
+        }, 100);
+    });
+    </script>
+
+
+{%endblock%}

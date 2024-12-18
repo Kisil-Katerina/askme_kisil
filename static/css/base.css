@@ -1,0 +1,221 @@
+.input {
+    background-color: #D7E6C7; 
+    height: auto;
+    }
+
+a{
+    color: #3e3f03;   
+    font-size: larger;
+}
+
+form{
+    font-size: large;
+  }
+body {
+    background-color: #96B690;
+}
+
+.navbar {
+    background-color: #B6D0B4; 
+}
+
+.answer {
+    background-color: #7ea981; 
+}
+
+.question {
+    background-color: #71a16f; 
+}
+
+.form-control{
+    background-color: #D7E6C7; 
+} 
+
+.input-val{
+    background-color: #D7E6C7; 
+    width: 500px;
+}
+.input-file-val{
+    background-color: #D7E6C7; 
+    width:250px;
+    white-space: nowrap; /* Не переносить текст */
+    overflow: hidden; /* Скрыть переполнение */
+    text-overflow: ellipsis; /* Добавить многоточие, если текст длиннее */
+    display: inline-block; /* Позволяет задавать ширину */
+    min-width: 150px; /* Минимальная ширина поля */
+}
+
+.file-input{
+    background-color: #D7E6C7; 
+    display: none;
+}
+
+.url{
+    background-color: #D7E6C7; 
+    width: 200px;
+}
+
+
+.card-link {
+    color: #3e3f03; 
+}
+
+
+.list-group-item {
+    background-color: #739E6B; 
+}
+
+.list-group-item a {
+    color: #1a290c; 
+    font-size: large;
+}
+
+.pagination .page-link {
+    background-color: #B6D0B4; 
+    color: #1a290c;
+    font-size: large;
+}
+
+html, 
+body { 
+    display: flex; 
+    flex-direction: column; 
+    text-align: justify;
+    line-height: 1.6;  /* улучшает читаемость текста */
+    font-size: 16px;
+    height: 100%;
+    
+}
+
+main { 
+    flex: 1; 
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-body {
+    flex-grow: 1;
+}
+
+.card-footer {
+    margin-top: auto; }
+
+.smal_header{
+    font-size: 120%;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Отступы между тегами */
+}
+
+
+.tag-item {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: #28a745; /* Зеленый фон для тега */
+    border-radius: 20px;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавный эффект увеличения и тени */
+}
+
+/* эффект увеличения и тени при наведении */
+.tag-item:hover {
+    transform: scale(1.1); /* увеличение на 10% */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* тень для выделения */
+}
+
+
+.badge {
+    flex: 1 0 45%; /* каждый тег занимает 45% ширины контейнера (два тега на строку) */
+    font-size: 1.2rem; /* увеличиваем размер шрифта */
+    padding: 0.5rem 1rem; /* отступы внутри тегов */
+    text-decoration: none; /* убираем подчеркивание ссылок */
+    border-radius: 1rem; /* округлые углы */
+    white-space: nowrap; /* запрещаем перенос строк внутри тегов */
+}
+
+
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+.list-group-item {
+    padding: 12px 20px;
+    border-radius: 8px; /* Скругленные углы для каждого элемента списка */
+    margin-bottom: 8px;  /* Отступы между элементами */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавный эффект */
+}
+
+/* Эффект при наведении на элементы списка */
+.list-group-item:hover {
+    transform: translateY(-3px); /* Элемент поднимается */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Тень при наведении */
+}
+
+/* Оформление для имени пользователя */
+.smal_header {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* Оформление для рейтинга */
+.ms-4 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* для лайков */
+.like-button {
+    border-color: transparent !important; /* Убираем цвет границы */
+    background-color: transparent !important;} /* Убираем фон кнопки */
+
+.like-button:hover {
+    background-color: rgba(172, 11, 11, 0.692) !important; } /* Фоновый цвет при наведении */
+    
+.like-button i.bi-heart {
+    color:#cadfd2 !important; }/* Цвет сердечка  */
+        
+.like-button:hover i.bi-heart {
+     color: #cadfd2 !important;} /* Цвет сердечка при наведении */
+
+.answer-like-button {
+    border-color: transparent !important; /* Убираем цвет границы */
+    background-color: transparent !important;} /* Убираем фон кнопки */
+    
+.answer-like-button:hover {
+    background-color: rgba(172, 11, 11, 0.692) !important; } /* Фоновый цвет при наведении */
+        
+.answer-like-button i.bi-heart {
+    color:#cadfd2 !important; }/* Цвет сердечка  */
+            
+             
+.btn.btn-danger {
+    background-color: rgba(172, 11, 11, 0.692)   !important;
+    border-color: rgba(172, 11, 11, 0.692)   !important;
+    color: #cadfd2 !important;
+      }
+
+.btn.btn-danger:hover {
+    background-color: rgba(172, 11, 11, 0.692)   !important;
+    border-color: rgba(172, 11, 11, 0.692)   !important;
+    color: #cadfd2 !important;
+      }
+
+
+/* .like-button.liked i.bi-heart {
+        color: #4e0a0a !important; }Закрашенный цвет сердечка */  
+ 
+

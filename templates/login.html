@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{%block initial%}
+    <h1 class="me-4">Войти:</h1>
+    <a href="{% url 'index' %}">Новые вопросы</a>
+{%endblock%}
+
+ {%block content%}
+  <form class="w-100" id="questionForm" method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="form-group row  mt-5">
+        <label for="username" class="col-sm-3 col-form-label">Имя пользователя</label>
+        <div class="col-sm-10">
+           {{ form.username }}
+               {% for error in form.username.errors %}
+                  {{ error }}
+               {% endfor %}
+        </div>
+    </div>
+    <div class="form-group row  mt-3">
+        <label for="password" class="col-sm-3 col-form-label">Пароль</label>
+        <div class="col-sm-10">
+           {{ form.password }}
+              {% for error in form.password.errors %}
+                {{ error }}
+              {% endfor %}
+        </div>
+    </div>
+    <div  class="form-group" >
+        <button class="btn btn-success col-sm-2  mt-5 mb-4" type="submit">Войти!</button>
+        <div>
+            <a href="{% url 'register' %}">Создать новый аккаунт</a>
+        </div>
+    </div>
+  </form>                
+ {%endblock%}

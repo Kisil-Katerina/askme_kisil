@@ -1,0 +1,71 @@
+
+
+/* Общие стили для Select2 */
+.select2-container {
+    width: 100% !important;
+}
+
+.select2-selection {
+    background-color: #D7E6C7 !important; /* Цвет фона */
+    border-radius: 4px;
+    padding: 6px 12px;
+    height: auto !important; /* Высота поля */
+    line-height: 1.42857143;
+
+}
+.select2-selection--multiple .select2-selection__rendered {
+    padding: 0.5em;
+}
+.select2-selection--single {
+    height: auto;
+}
+
+.select2-selection__rendered {
+  color:#000000 !important; /* Цвет текста */
+}
+.select2-selection__placeholder {
+    color: #D7E6C7 !important;
+}
+
+/* Выпадающий список */
+.select2-dropdown {
+  background-color: #D7E6C7 !important; /* Фон выпадающего списка */
+}
+
+.select2-results__option {
+    color: #333 !important; /* Цвет текста в выпадающем списке */
+    padding: 8px 12px;
+  }
+  
+.select2-results__option--highlighted {
+  background-color: #578859 !important; /* Цвет при наведении */
+  color: #ffffff !important; /* Цвет текста при наведении */
+}
+
+.select2-search--inline .select2-search__field {
+      border: none !important;
+  }
+  
+.select2-container--default.select2-container--focus .select2-selection--multiple,
+.select2-container--default.select2-container--focus .select2-selection--single{
+      border: none !important;
+  }
+  
+/* Теги (если multiple) */
+.select2-selection__choice {
+    background-color: #578859 !important; /* Фон тегов */
+    color: rgb(255, 255, 255) !important; /* Цвет текста тегов */
+    border-radius: 4px;
+}
+
+.select2-selection__choice__remove {
+      color: #f4f6f1 !important;
+      margin-right: 0.25em;
+}
+
+/* Теги которые уже добавлены
+.select2-selection__choice--display {
+    background-color: #578859 !important;
+    color: rgb(255, 255, 255) !important;
+    border-radius: 4px;
+  } */

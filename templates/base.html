@@ -1,0 +1,124 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>книжный клуб</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/img">
+
+
+    <script>
+        function checkAuthAndRedirect(url) {
+          const isAuthenticated = '{{ user.is_authenticated }}' === 'True';
+            if (!isAuthenticated) {
+                // Выводим сообщение об ошибке
+                alert('Вы должны войти, чтобы задать вопрос.');
+            } else {
+              window.location.href = url;
+            }
+        }
+    </script>
+    
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+            <div class="d-flex w-100 justify-content-between align-items-center">
+                <a class="navbar-brand ms-3" href="#" style="font-size: 24px;"> &#128366; Книжный клуб</a>
+                <form class="d-flex col-md-6" role="search">
+                    <a class="btn btn-success mx-2 w-25 "  onclick="checkAuthAndRedirect('{% url 'ask' %}')">
+                        Задать вопрос!
+                    </a>
+                </form>
+
+                <div class="d-flex gap-1" id="user_inf">
+                    {% if user.is_authenticated %}
+                        {% if user.profile.avatar %}
+                          <img style="width: 70px" src="{{ user.profile.avatar.url }}" alt="Avatar" class="img-thumbnail" style="width: 50px; height: 50px;">
+                        {% else %}
+                              <img style="width: 70px" src="{% static 'img/default-avatar.png' %}" alt="Avatar" class="img-thumbnail" style="width: 50px; height: 50px;">
+                        {% endif %}
+                    <div>
+                        <div class="ms-2 me-2">
+                          {{ user.username }}
+                        </div>
+                        <a class="ms-2 me-2" href="{% url 'signup' %}">настройки</a>
+                        <a class="ms-2 me-2" href="{% url 'logout' %}?next={{ request.path|urlencode }}">выйти</a>
+                    </div>
+                   {% else %}
+                   <div>
+                       <a class="ms-2 me-2" href="{% url 'register' %}">зарегистрироваться</a>
+                       <a class="ms-2 me-2" href="{% url 'login' %}">войти</a>
+                    </div>
+                   {% endif %}
+                      
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    {% for message in messages %}
+        <div class="alert auto-dismiss {% if message.tags %} alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <main class="container mt-3">
+        <div class="d-flex gap-3 align-items-center" id="main_content">
+            {% block initial %}
+            {% endblock%}
+        </div>
+
+        <div class="row">
+            <div class="col-8">
+                {% block content %}
+                {% endblock%}
+            </div>
+            <div class="col ms-5">
+                <section class="mb-3">
+                    <h2>Популярные теги</h2>
+                    <div class="tags-container">
+                        {% for tag in tags %}
+                            <a href="{% url 'tag' tag.id %}" class="badge text-bg-success mt-2 tag-item">{{ tag.name }}</a>
+                        {% endfor %}
+                    </div>
+                </section>
+                
+                <section class="mt-5">
+                    <h2>Лучшие пользователи</h2>
+                    <div>
+                        <ul class="list-group list-group-flush">
+                            {% for member in best_members %}
+                                <li class="list-group-item">
+                                    <span class="smal_header">{{ member.user.username }}</span>
+                                    <span class="ms-4">rating: {{ member.rating }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+    <footer class="bg-dark text-white text-center py-1 mt-5">
+        <p>тут могла бы быть ваша реклама</p>
+    </footer>
+
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/set_likes.js" defer></script>
+</body>
+
+</html>

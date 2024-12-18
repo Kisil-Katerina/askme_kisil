@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block initial%}
+    <h1 class="me-4">Задайте вопрос:</h1>
+    <a href="{% url 'index' %}">Новые вопросы</a>
+    <link rel="stylesheet" href="../static/css/select2.css">
+{%endblock%}
+
+{% block content %}
+    <form class="w-100" id="questionForm" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-group row  mt-5">
+            <label for="title" class="col-sm-2 col-form-label">Заголовок</label>
+            <div class="col-sm-11">
+               {{ form.title }}
+                {% for error in form.title.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-group row  mt-3">
+            <label for="content" class="col-sm-2 col-form-label">Текст</label>
+            <div class="col-sm-11">
+                {{ form.content }}
+                {% for error in form.content.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-group row  mt-3">
+            <label for="tags" class="col-sm-2 col-form-label">Тэги</label>
+            <div class="col-sm-11">
+                {{ form.tags }}
+                {% for error in form.tags.errors %}
+                    {{ error }}
+                {% endfor %}
+             </div>
+        </div>
+        <button class="btn btn-success col-sm-2  mt-5" type="submit">Спросить!</button>
+    </form>                
+    <script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+    {{ form.media }}
+    <script>
+        $(document).ready(function() {
+         $("#id_tags").select2({
+           tags: true, // Разрешаем создавать новые теги
+           tokenSeparators: [','],
+           ajax: {
+              url: "{% url 'tag_autocomplete' %}",
+              dataType: 'json',
+              delay: 250,
+               data: function(params) {
+                   return {
+                       term: params.term
+                   };
+               },
+               processResults: function(data) {
+                   return {
+                       results: data.results
+                   };
+               }
+           }
+         });
+     });
+       </script>
+{% endblock %}
