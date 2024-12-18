@@ -1,54 +1,47 @@
 {% extends "base.html" %}
 
-{%block navigation%}
-    <img src="asda.jpg" alt="Avatar" class="img-thumbnail">
-    <div>
-        <div class="ms-2 me-2">
-            Ф. М. Достоевский
-        </div>
-        <a class="ms-2 me-2" href="{% url 'signup' %}">settings</a>
-        <a class="ms-2 me-2" href="{% url 'login' %}">log out</a>
-    </div>
-{%endblock%}
 
 {%block initial%}
-    <h1>Hot Questions</h1>
-    <a href="{% url 'index' %}">New Questions</a>
+    <h1 class="me-4">Интересные вопросы</h1>
+    <a href="{% url 'index' %}">Новые вопросы</a>
 {%endblock%}
 
 {% block content %}
+{% csrf_token %}
     <div class="d-flex flex-column gap-3">
     {% for question in questions %}
-        <div class="card question w-100" style="width: 18rem; display: flex; flex-direction: column; height: 100%;">
-            <div class="card-body d-flex flex-column" style="flex-grow: 1;">
-                <div class="row">
-                    <div class="col-3">
-                        <div class="border mb-2">
-                            <img src="../static/img/jpg.jpg" alt="Avatar" class="img-fluid" style="width: 100%; height: auto;">
-                        </div>
-                        <input class="form-control" type="number" value={{ question.rating}} placeholder="Default input"
-                                aria-label="default input example">
-                    </div>
-                    <div class="col-9">
-                        <a href="{% url 'question' question.id %}" class="card-title">{{ question.title }}</a>
-                        <p class="card-text">{{ question.content }}</p>
-
-                        <div class="d-flex gap-5">
-                            <em> Answers ( {{ question.answer_count }} )</em>
-                            <div>
-                                Tags:
-                                {% for tag in question.tags.all %}
-                                    <a href="{% url 'tag' tag.id %}" class="ms-2">{{ tag.name }}</a>
-                                {% endfor %}
-                            </div>
+    <div class="card question w-100" style="width: 18rem; display: flex; flex-direction: column; height: 100%;">
+        <div class="card-body d-flex flex-column" style="flex-grow: 1;">
+            <div class="row">
+                <div class="col-12 ">
+                    <a href="{% url 'question' question.id %}" class="card-title">{{ question.title }}</a>
+                    <p class="card-text">{{ question.content }}</p>
+    
+                    <div class="d-flex gap-5">
+                        <em> Ответы <br> ( {{ question.answer_count }} )</em>
+                        <div>
+                            Тэги:
+                            {% for tag in question.tags.all %}
+                                <a href="{% url 'tag' tag.id %}" class="ms-2">{{ tag.name }}</a>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card-footer text-muted mt-auto">
-                создан: {{ question.created_at }}
+        </div>
+        <div class="card-footer text-muted mt-auto d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-sm like-button" data-question-id="{{ question.id }}">
+                    <i class="bi bi-heart"></i>
+                  </button>
+                <span class="ms-1 like-count">{{ question.rating }}</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <span>автор: {{ question.author.username }}</span> 
+                <span class="ms-3">создан: {{ question.created_at }}</span> 
             </div>
         </div>
+    </div>
     {% endfor %}
 
     {% include 'pagination.html' %}

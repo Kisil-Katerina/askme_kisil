@@ -19,7 +19,7 @@ class QuestionManager(models.Manager):
 # профиль пользователя
 class Profile(models.Model): 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    avatar = models.ImageField(null=True, blank=True, default="default-avatar.png", upload_to="avatar/%Y/%m/%d")
     rating = models.IntegerField(default=0)
 
     def __str__(self):
@@ -34,8 +34,7 @@ class Profile(models.Model):
 
         # суммируем количество лайков на вопросах и ответах
         self.rating = questions_likes + answers_likes
-        self.save()
-       
+        self.save()    
 
 # тег
 class Tag(models.Model):
@@ -61,9 +60,27 @@ class Question(models.Model):
         self.rating = self.likes.count()
         self.save()
     
+    def answer_count(self):
+        return self.answers.count()
+
+
+    def like(self, user):
+        QuestionLike.objects.create(user=user, question=self)
+        self.rating = self.likes.count()
+        self.save()
+
+    def unlike(self, user):
+        try:
+           like = QuestionLike.objects.get(user=user, question=self)
+           like.delete()
+           self.rating = self.likes.count()
+           self.save()
+        except QuestionLike.DoesNotExist:
+             pass
+         
     # менеджер
     objects = QuestionManager()
-
+         
 # ответ
 class Answer(models.Model):
     content = models.TextField()
@@ -80,6 +97,20 @@ class Answer(models.Model):
         # обновляем рейтинг ответа, основываясь на лайках
         self.rating = self.likes.count()
         self.save()
+        
+    def like(self, user):
+        AnswerLike.objects.create(user=user, answer=self)
+        self.rating = self.likes.count()
+        self.save()
+
+    def unlike(self, user):
+        try:
+           like = AnswerLike.objects.get(user=user, answer=self)
+           like.delete()
+           self.rating = self.likes.count()
+           self.save()
+        except AnswerLike.DoesNotExist:
+            pass
 
 # лайк для вопроса
 class QuestionLike(models.Model):
@@ -88,6 +119,7 @@ class QuestionLike(models.Model):
 
     class Meta:
         unique_together = ('user', 'question')  # ограничение на уникальность
+        
 
 # лайк для ответа
 class AnswerLike(models.Model):
@@ -96,4 +128,6 @@ class AnswerLike(models.Model):
 
     class Meta:
         unique_together = ('user', 'answer')   # ограничение на уникальность
+
+        
 

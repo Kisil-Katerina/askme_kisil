@@ -1,38 +1,37 @@
 {% extends "base.html" %}
 
 {%block initial%}
-    <h1>Log in</h1>
-    <a href="{% url 'index' %}">New Questions</a>
+    <h1 class="me-4">Войти:</h1>
+    <a href="{% url 'index' %}">Новые вопросы</a>
 {%endblock%}
 
-{%block content%}
-  <form class="w-100" id="questionForm">
-
+ {%block content%}
+  <form class="w-100" id="questionForm" method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
     <div class="form-group row  mt-5">
-        <label for="log" class="col-sm-2 col-form-label">Login</label>
+        <label for="username" class="col-sm-3 col-form-label">Имя пользователя</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control input-val" id="title" maxlength="10" placeholder="Введите логин" required>
-            <div class="invalid-feedback">Пожалуйста, введите логин!</div>
+           {{ form.username }}
+               {% for error in form.username.errors %}
+                  {{ error }}
+               {% endfor %}
         </div>
     </div>
-
     <div class="form-group row  mt-3">
-        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <label for="password" class="col-sm-3 col-form-label">Пароль</label>
         <div class="col-sm-10">
-            <input type="password" class="form-control input-val" id="password" maxlength="10"  placeholder="Введите пароль" >
-            <div class="invalid-feedback">Пожалуйста, введите пароль!</div>
+           {{ form.password }}
+              {% for error in form.password.errors %}
+                {{ error }}
+              {% endfor %}
         </div>
     </div>
-
     <div  class="form-group" >
-        <button class="btn btn-success col-sm-2  mt-5 mb-4" type="submit">Log in!</button>
+        <button class="btn btn-success col-sm-2  mt-5 mb-4" type="submit">Войти!</button>
         <div>
-            <a href="{% url 'register' %}">create new account</a>
+            <a href="{% url 'register' %}">Создать новый аккаунт</a>
         </div>
-   </div>
-   
+    </div>
   </form>                
-
-  <div id="errorMessages" class="mt-3 text-danger"></div>
-
-{%endblock%}
+ {%endblock%}
